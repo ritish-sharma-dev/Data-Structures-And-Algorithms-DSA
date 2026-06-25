@@ -1,5 +1,4 @@
 
-// 
 // TC : O(n^2 + n)
 // SC : O(m + n) = O(2n)
 class Solution {
@@ -27,7 +26,6 @@ class Solution {
         }
         
         return -1;
-       
     }
 };
 
