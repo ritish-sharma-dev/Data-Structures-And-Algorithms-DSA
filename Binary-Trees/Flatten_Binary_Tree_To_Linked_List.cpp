@@ -1,4 +1,5 @@
-// LEETCODE - 700
+// LEETCODE - 114
+
 
 
 /**
@@ -12,28 +13,26 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-
- // MORRIS ALGORITHM
- // TC : O(n)
- // SC : O(1)
 class Solution {
 public:
-    TreeNode* searchBST(TreeNode* root, int val) {
-        if (!root) return root;
+    TreeNode* prev = NULL;
+    void flatten(TreeNode* root) {
+        if (root == NULL) return;
 
-        if (root->val == val) return root;
-        TreeNode* left = searchBST(root->left, val);
-        if (left) return left;
-        TreeNode* right = searchBST(root->right, val);
-        if (right) return right;
+        flatten(root->right);
+        flatten(root->left);
 
-        return NULL;
+        root->right = prev;
+        root->left = NULL;
+
+        prev = root;
     }
 };
 
 
 
 
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -47,10 +46,22 @@ public:
  */
 class Solution {
 public:
-    TreeNode* searchBST(TreeNode* root, int val) {
-        while (root && root->val != val){
-            root = val < root->val ? root->left : root->right;
+    void flatten(TreeNode* root) {
+        if (root == NULL) return;
+        
+        stack <TreeNode*> s;
+        s.push(root);
+
+        while (!s.empty()){
+            TreeNode* node = s.top();
+            s.pop();
+
+            if (node->right) s.push(node->right);
+            if (node->left) s.push(node->left);
+            if (!s.empty()){
+                node->right = s.top();
+                node->left = NULL;
+            }
         }
-        return root;
     }
 };

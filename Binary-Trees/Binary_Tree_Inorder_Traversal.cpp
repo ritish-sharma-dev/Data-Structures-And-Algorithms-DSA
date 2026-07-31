@@ -69,3 +69,51 @@ public:
         return ans;
     }
 };
+
+
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+ // MORRIS ALGORITHM
+ // TC : O(n)
+ // SC : O(1)
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> inorder;
+
+        TreeNode* curr = root;
+        while (curr != NULL){
+            if (curr->left == NULL){
+                inorder.push_back(curr->val);
+                curr = curr->right;
+            }else {
+                TreeNode* x = curr->left;
+                while (x->right && x->right != curr){
+                    x = x->right;
+                }
+
+                if (x->right == NULL){
+                    x->right = curr;
+                    curr = curr->left;
+                }else {
+                    x->right = NULL;
+                    inorder.push_back(curr->val);
+                    curr = curr->right;
+                }
+            }
+        }
+
+        return inorder;
+    }
+};
