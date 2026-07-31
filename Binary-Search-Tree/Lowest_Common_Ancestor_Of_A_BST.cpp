@@ -13,6 +13,7 @@
  * };
  */
 
+ 
 class Solution {
 public:
     void findPaths(TreeNode* root, TreeNode* query, vector<TreeNode*> &x){
@@ -58,7 +59,8 @@ public:
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-
+// TC : O(n)
+// SC : O(1)
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
