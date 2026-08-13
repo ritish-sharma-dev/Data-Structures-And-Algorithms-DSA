@@ -88,6 +88,10 @@ public:
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+// MORRIS TRAVERSAL
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
